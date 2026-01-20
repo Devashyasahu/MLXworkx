@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0F0F1E;
+  --foreground: #FFFFFF;
+  --cyan-accent: #06B6D4;
+  --indigo-accent: #4F46E5;
+  --fuchsia-accent: #D946EF;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  color: var(--foreground);
+  background: linear-gradient(135deg, #0F0F1E 0%, #1A1535 50%, #0F0F1E 100%);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.3px;
+}
+
+/* Selection styling - vibrant cyan */
+::selection {
+  background: linear-gradient(135deg, var(--cyan-accent), var(--indigo-accent));
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: linear-gradient(135deg, var(--cyan-accent), var(--indigo-accent));
+  color: #ffffff;
+}
+
+/* Scrollbar - vibrant cyan theme */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(15, 15, 30, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--cyan-accent), var(--indigo-accent));
+  border-radius: 6px;
+  border: 2px solid rgba(15, 15, 30, 0.8);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--cyan-accent), var(--fuchsia-accent));
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-color: var(--cyan-accent) rgba(15, 15, 30, 0.5);
+  scrollbar-width: thin;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+/* Text glow effect for headings */
+h1, h2, h3, h4, h5, h6 {
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+}
+
+/* Link styling */
+a {
+  color: var(--cyan-accent);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: var(--fuchsia-accent);
+  text-shadow: 0 0 10px rgba(217, 70, 239, 0.5);
+}
+
+/* Button baseline */
+button {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+}
+
+/* Animations */
+@keyframes glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(6, 182, 212, 0.8);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.glow {
+  animation: glow 2s ease-in-out infinite;
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Section transitions */
+section {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Image hover effects */
+img {
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+img:hover {
+  filter: brightness(1.1) saturate(1.2);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--cyan-accent), var(--indigo-accent), var(--fuchsia-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Vibrant shadows */
+.shadow-cyan {
+  box-shadow: 0 0 30px rgba(6, 182, 212, 0.3);
+}
+
+.shadow-indigo {
+  box-shadow: 0 0 30px rgba(79, 70, 229, 0.3);
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  body {
+    font-size: 15px;
+  }
+  
+  h1 {
+    font-size: clamp(28px, 8vw, 48px);
+  }
+  
+  h2 {
+    font-size: clamp(24px, 7vw, 42px);
+  }
+}
+
+/* Typewriter cursor */
+.typewriter-cursor::after {
+  content: "|";
+  animation: blink 1s infinite;
+  color: var(--cyan-accent);
+  margin-left: 4px;
+  filter: drop-shadow(0 0 10px var(--cyan-accent));
+}
+
+@keyframes blink {
+  0%, 49%, 100% {
+    opacity: 1;
+  }
+  50%, 99% {
+    opacity: 0;
+  }
+}
