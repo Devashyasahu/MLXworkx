@@ -26,36 +26,35 @@ export default function Hero() {
       
       {/* BRIGHT ANIMATED BACKGROUND ORBS */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-        <motion.div 
+        <div 
           className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-cyan-400 rounded-full mix-blend-screen filter blur-3xl opacity-25"
-          animate={{ y: [0, -50, 0], x: [0, 30, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          style={{
+            animation: 'float-orb 8s ease-in-out infinite',
+          }}
         />
-        <motion.div 
+        <div 
           className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-blue-400 rounded-full mix-blend-screen filter blur-3xl opacity-20"
-          animate={{ y: [0, 50, 0], x: [0, -30, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+          style={{
+            animation: 'float-orb 10s ease-in-out infinite 1s',
+          }}
         />
       </div>
 
       {/* BRIGHT BACKGROUND PANELS */}
       <div className="absolute inset-0 flex w-full h-full" aria-hidden="true">
         {PANELS.map((panel, i) => (
-          <motion.div 
+          <div 
             key={panel.id} 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.6 }}
-            transition={{ duration: 0.8, delay: i * 0.1 }}
             className="relative flex-1 h-full border-r border-cyan-400/20 overflow-hidden group"
           >
-            <motion.img 
+            <img 
               src={panel.img}
               alt={panel.label}
               loading="lazy"
               className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-95 transition-opacity duration-500 brightness-110"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/5 to-slate-900/50" />
-          </motion.div>
+          </div>
         ))}
       </div>
 

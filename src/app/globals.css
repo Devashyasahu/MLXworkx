@@ -114,6 +114,15 @@ button {
   }
 }
 
+@keyframes float-orb {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(var(--tx), var(--ty));
+  }
+}
+
 @keyframes pulse-glow {
   0%, 100% {
     opacity: 0.6;
@@ -133,6 +142,20 @@ button {
 
 .pulse-glow {
   animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Performance optimizations */
+video, img {
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Enable GPU acceleration for animations */
+.will-animate {
+  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
+  -webkit-transform: translate3d(0, 0, 0);
 }
 
 /* Section transitions */

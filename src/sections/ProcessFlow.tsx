@@ -38,11 +38,11 @@ export default function ProcessFlow() {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 mb-24">
           {partners.map((partner, idx) => (
             <motion.div
-              key={idx}
+              key={`partner-${idx}`}
               initial={{ opacity: 0, scale: 0.8, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: idx * 0.05, duration: 0.5 }}
+              transition={{ delay: Math.min(idx * 0.03, 0.15), duration: 0.4 }}
               whileHover={{ scale: 1.05 }}
               className="flex items-center justify-center p-6 bg-white rounded-xl border border-slate-200 hover:border-slate-300 hover:shadow-lg transition-all cursor-pointer"
             >
@@ -58,12 +58,14 @@ export default function ProcessFlow() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
           className="text-center bg-white rounded-[32px] p-16 border border-slate-200"
         >
           <motion.h3 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1, duration: 0.5 }}
             className="text-slate-900 text-5xl md:text-6xl font-black mb-6 uppercase tracking-tight"
           >
             Ready to Transform<br />Your Manufacturing?
@@ -72,7 +74,8 @@ export default function ProcessFlow() {
           <motion.p 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15, duration: 0.5 }}
             className="text-slate-600 text-lg md:text-xl mb-10 max-w-3xl mx-auto leading-relaxed"
           >
             Connect with our network of vetted partners and streamline your entire production workflow from prototype to mass production.

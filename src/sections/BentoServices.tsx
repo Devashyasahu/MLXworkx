@@ -66,6 +66,7 @@ const VideoCard = ({ item }: { item: any }) => {
         src={item.thumb}
         alt={item.title}
         className="absolute inset-0 w-full h-full object-cover"
+        loading="lazy"
       />
       
       {/* Video (if available) */}
@@ -76,24 +77,30 @@ const VideoCard = ({ item }: { item: any }) => {
         muted
         loop
         playsInline
+        preload="none"
         className="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 opacity-0 group-hover:opacity-100"
       />
 
       {/* Play Button Indicator */}
-      <motion.div
-        initial={{ scale: 1, opacity: 0.7 }}
-        animate={isHovering ? { scale: 1.1, opacity: 1 } : { scale: 1, opacity: 0.7 }}
+      <div
         className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-all duration-300"
+        style={{
+          opacity: isHovering ? 1 : 0.7,
+          transform: isHovering ? 'scale(1)' : 'scale(1)',
+        }}
       >
-        <motion.div
-          animate={isHovering ? { scale: 1.2 } : { scale: 1 }}
+        <div
           className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center shadow-xl"
+          style={{
+            transform: isHovering ? 'scale(1.2)' : 'scale(1)',
+            transition: 'transform 0.3s ease-out',
+          }}
         >
           <svg className="w-10 h-10 text-cyan-600 ml-1" fill="currentColor" viewBox="0 0 20 20">
             <path d="M6.3 2.841A1.5 1.5 0 004 4.11V15.89a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.84z" />
           </svg>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* Module Badge */}
       <div className="absolute top-6 left-6 bg-slate-950 text-white px-5 py-2 rounded-full font-black text-xs tracking-tighter">
@@ -151,14 +158,14 @@ export default function BentoServices() {
         const isEven = idx % 2 === 0;
         return (
           <div 
-            key={idx} 
+            key={`capability-${item.id}`}
             className="h-screen w-full flex items-center justify-center snap-start px-6 md:px-20"
           >
             <motion.div 
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.6 }}
               className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center bg-gradient-to-br from-slate-800 to-slate-900 rounded-[48px] overflow-hidden border border-cyan-500/20 shadow-2xl shadow-cyan-500/10 max-w-7xl w-full h-[90vh]`}
             >
               {/* VIDEO SIDE (Alternates per section) */}
@@ -171,7 +178,8 @@ export default function BentoServices() {
                 <motion.span 
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1, duration: 0.5 }}
                   className="text-cyan-400 font-mono text-xs tracking-[0.4em] uppercase font-bold mb-6 flex items-center gap-2"
                 >
                   <span className="text-cyan-500">✦</span> Managed Capabilities
@@ -180,7 +188,8 @@ export default function BentoServices() {
                 <motion.h3 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.15, duration: 0.5 }}
                   className="text-4xl lg:text-7xl font-black uppercase tracking-tight leading-[1.1] mb-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-300 bg-clip-text text-transparent"
                 >
                   {item.title}
@@ -189,7 +198,8 @@ export default function BentoServices() {
                 <motion.p 
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
                   className="text-slate-300 text-lg lg:text-xl font-medium leading-relaxed max-w-md mt-4 mb-2"
                 >
                   {item.desc}
@@ -198,7 +208,8 @@ export default function BentoServices() {
                 <motion.div 
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.25, duration: 0.5 }}
                   className="mt-12 flex items-center gap-4"
                 >
                   <div className="h-1 w-24 bg-gradient-to-r from-cyan-500 to-transparent rounded-full" />
